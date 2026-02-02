@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Team - Confeitaria Digital</title>
+
+<style>
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================= BARRA SUPERIOR ================= */
+.barra-superior {
+  background: #fff;
+  padding: 15px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+}
+
+.nome-equipe {
+  font-size: 24px;
+  color: #a80c26e5;
+  font-weight: bold;
+}
+
+.menu-navegacao {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.menu-navegacao a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.menu-navegacao a:hover {
+  color: #c62828;
+}
+
+/* ================= HERO ================= */
+.hero {
+  background: linear-gradient(rgba(139,44,61,.85), rgba(139,44,61,.85)),
+  url("");
+  background-size: cover;
+  background-position: center;
+  padding: 90px 10%;
+  color: #fff;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.hero-texto {
+  max-width: 520px;
+}
+
+.hero-texto span {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #ffb3b3;
+}
+
+.hero-texto h1 {
+  font-size: 40px;
+  margin: 15px 0;
+}
+
+.hero-texto p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.botoes-hero {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.botao {
+  padding: 14px 28px;
+  background: #c62828;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.botao:hover {
+  background: #a52020;
+}
+
+.botao-secundario {
+  background: transparent;
+  border: 2px solid #fff;
+}
+
+.botao-secundario:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.hero-app {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-app img {
+  width: 500px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.5);
+  display: block;
+}
+
+/* ================= SOBRE NÓS ================= */
+.sobre-nos {
+  padding: 70px 10%;
+  background: #fff;
+}
+
+.sobre-titulo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.sobre-subtitulo {
+  display: inline-block;
+  background: #f8d7e6;
+  color: #c62828;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.sobre-principal {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.sobre-descricao {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.sobre-conteudo {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.sobre-texto {
+  flex: 1;
+  min-width: 300px;
+}
+
+.sobre-texto h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sobre-texto p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.sobre-imagem {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.sobre-imagem img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ================= EQUIPE ================= */
+.equipe {
+  padding: 70px 10%;
+  background: #fafafa;
+}
+
+.equipe h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.equipe-subtitulo {
+  text-align: center;
+  color: #666;
+  margin-bottom: 50px;
+  font-size: 18px;
+}
+
+.equipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.membro {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.membro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* CSS MODIFICADO PARA ACEITAR FOTOS */
+.membro-foto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #e091b4;
+  margin: 0 auto 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.membro-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.membro h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.membro p {
+  font-size: 15px;
+  color: #c62828;
+  margin-bottom: 5px;
+}
+
+.membro span {
+  font-size: 14px;
+  color: #888;
+}
+
+/* ================= FUNCIONALIDADES ================= */
+.funcionalidades {
+  background: #7b1c1c;
+  padding: 70px 10%;
+}
+
+.funcionalidades h2 {
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.funcionalidades p {
+  text-align: center;
+  color: #ffdcdc;
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+
+.func-box {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 40px;
+}
+
+.func-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.func-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+}
+
+.func-item h3 {
+  color: #c62828;
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+
+.func-item p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ================= DOWNLOAD ================= */
+.download {
+  padding: 70px 10%;
+  text-align: center;
+  background: #fff;
+}
+
+.download h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.download p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.download a {
+  padding: 14px 35px;
+  background: #c62828;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 16px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.download a:hover {
+  background: #a52020;
+}
+
+/* ================= CONTATO ================= */
+.contato {
+  background: #fafafa;
+  padding: 70px 10%;
+}
+
+.contato-container {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.contato-formulario {
+  flex: 1;
+  min-width: 320px;
+}
+
+.contato-formulario h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.contato-formulario p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.contato-formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contato-formulario input,
+.contato-formulario textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.contato-formulario button {
+  padding: 14px;
+  background: #c62828;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contato-formulario button:hover {
+  background: #a52020;
+}
+
+#mensagem {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+}
+
+.contato-info {
+  flex: 1;
+  min-width: 320px;
+}
+
+.contato-info h3 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.info-icone {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.info-texto h4 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.info-texto p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 768px) {
+  .barra-superior {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .menu-navegacao {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .hero-texto h1 {
+    font-size: 32px;
+  }
+  
+  .sobre-conteudo {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BARRA SUPERIOR -->
+<nav class="barra-superior">
+  <div class="logo-container">
+    <img src="logo_DT.avif" alt="Logo" class="logo">
+    <span class="nome-equipe">Dream Team</span>
+  </div>
+  
+  <ul class="menu-navegacao">
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#funcionalidades">Funcionalidades</a></li>
+    <li><a href="#baixar">Baixar App</a></li>
+    <li><a href="#equipe">Equipe</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-container">
+    <div class="hero-texto">
+      <span>CONFEITARIA DIGITAL</span>
+      <h1>Doces Personalizados do Jeito que Você Deseja</h1>
+      <p>
+        Crie seu bolo perfeito! Escolha massas, recheios e 
+        coberturas exclusivas. Peça online, acompanhe em tempo real 
+        e receba no conforto da sua casa.
+      </p>
+      
+      <div class="botoes-hero">
+        <a href="#baixar" class="botao">Baixar App</a>
+        <a href="#contato" class="botao botao-secundario">Fale Conosco</a>
+      </div>
+    </div>
+
+    <div class="hero-app">
+      <img src="print_figma.png" alt="App">
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NÓS -->
+<section class="sobre-nos" id="sobre">
+  <div class="sobre-titulo">
+    <span class="sobre-subtitulo">SOBRE NÓS</span>
+    <h2 class="sobre-principal">Confeitaria Dream Team</h2>
+    <p class="sobre-descricao">Transformando momentos especiais em memórias doces</p>
+  </div>
+  
+  <div class="sobre-conteudo">
+    <div class="sobre-texto">
+      <h3>A Confeitaria Dream Team</h3>
+      <p>
+        nasceu da paixão por criar doces únicos e personalizados que encantam 
+        cada cliente. Somos especializados em bolos e doces artesanais, feitos com 
+        ingredientes selecionados e muito carinho.
+      </p>
+      <p>
+        Nossa plataforma web revoluciona a forma de fazer pedidos: você escolhe 
+        cada detalhe do seu bolo ideal, desde a massa até a decoração final. 
+        Tudo de forma prática, rápida e intuitiva!
+      </p>
+    </div>
+    
+    <div class="sobre-imagem">
+      <img src="bolo7.jpg" alt="Bolo">
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section class="equipe" id="equipe">
+  <h2>Nossa Equipe</h2>
+  <p class="equipe-subtitulo">Conheça os profissionais por trás da Dream Team</p>
+  
+  <div class="equipe-grid">
+    <!-- MEMBRO 1 - Gustavo Sam -->
+    <div class="membro">
+      <div class="membro-foto">
+        <img src="gustavo.png" alt="Gustavo Sam">
+      </div>
+      <h3>Gustavo Sam</h3>
+      <p>Desenvolvedor Frontend</p>
+      <span>Especialista em interfaces</span>
+    </div>
+    
+    <!-- MEMBRO 2 - Kevem Ravier -->
+    <div class="membro">
+      <div class="membro-foto">
+        <img src="kevem.png" alt="Kevem Ravier">
+      </div>
+      <h3>Kevem Ravier</h3>
+      <p>Desenvolvedor Backend</p>
+      <span>Expert em banco de dados</span>
+    </div>
+    
+    <!-- MEMBRO 3 - James Renam -->
+    <div class="membro">
+      <div class="membro-foto">
+        <img src="james.png" alt="James Renam">
+      </div>
+      <h3>James Renam</h3>
+      <p>Designer UX/UI</p>
+      <span>Criador de experiências</span>
+    </div>
+    
+    <!-- MEMBRO 4 - Sarah Nayrla -->
+    <div class="membro">
+      <div class="membro-foto">
+        <img src="sarah.png" alt="Sarah Nayrla">
+      </div>
+      <h3>Sarah Nayrla</h3>
+      <p>Designer gráfica</p>
+      <span>Arquiteta dos estilos</span>
+    </div>
+    
+    <!-- MEMBRO 5 - Kauan Pires -->
+    <div class="membro">
+      <div class="membro-foto">
+        <img src="kauan.png" alt="Kauan Pires">
+      </div>
+      <h3>Kauan Pires</h3>
+      <p>Gerente de Projetos</p>
+      <span>Coordenador geral</span>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONALIDADES -->
+<section class="funcionalidades" id="funcionalidades">
+  <h2>FUNCIONALIDADES</h2>
+  <p>Recursos completos para gestão e vendas online</p>
+
+  <div class="func-box">
+    <div class="func-grid">
+
+      <div class="func-item">
+        <h3>Catálogo com filtros</h3>
+        <p>Exibição organizada dos produtos, permitindo busca rápida por categorias.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Personalização do bolo</h3>
+        <p>Escolha de sabores, tamanhos, recheios e decoração.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Simulador visual</h3>
+        <p>Visualização prévia do bolo antes da finalização do pedido.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Carrinho de compras</h3>
+        <p>Organização dos produtos selecionados pelo cliente.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Cálculo automático</h3>
+        <p>Cálculo de frete e custos de forma automática.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Pagamentos</h3>
+        <p>Aceita PIX, dinheiro e outros meios digitais.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Notificações</h3>
+        <p>Alertas automáticos sobre o status dos pedidos.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Entrega por motoboy</h3>
+        <p>Integração com serviços de entrega.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Cupons e promoções</h3>
+        <p>Criação de descontos para fidelizar clientes.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Avaliações</h3>
+        <p>Clientes podem avaliar produtos e serviços.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Interface moderna</h3>
+        <p>Design intuitivo com modo claro e escuro.</p>
+      </div>
+
+      <div class="func-item">
+        <h3>Contato direto</h3>
+        <p>Número de contato integrado ao sistema.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="download" id="baixar">
+  <h2>Baixe o Aplicativo</h2>
+  <p>Gerencie sua confeitaria diretamente pelo celular.</p>
+  <a href="#">📲 Download do App</a>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="contato-container">
+    
+    <div class="contato-formulario">
+      <h2>Entre em Contato</h2>
+      <p>Tem alguma dúvida ou sugestão? Adoraríamos ouvir você! Preencha o formulário e retornaremos em breve.</p>
+      
+      <form id="formulario">
+        <input type="text" placeholder="Seu nome" required>
+        <input type="email" placeholder="Seu e-mail" required>
+        <textarea placeholder="Mensagem" rows="5" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      
+      <div id="mensagem"></div>
+    </div>
+    
+    <div class="contato-info">
+      <h3>Informações de Contato</h3>
+      
+      <div class="info-item">
+        <div class="info-icone">📍</div>
+        <div class="info-texto">
+          <h4>Endereço</h4>
+          <p>Rua das Delícias, 123<br>Centro - Cidade/UF</p>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <div class="info-icone">📧</div>
+        <div class="info-texto">
+          <h4>Email</h4>
+          <p>contato@dreamteam.com.br</p>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <div class="info-icone">📱</div>
+        <div class="info-texto">
+          <h4>Telefone</h4>
+          <p>(00) 9 9999-9999</p>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <div class="info-icone">🕐</div>
+        <div class="info-texto">
+          <h4>Horário</h4>
+          <p>Seg - Sex: 9h às 18h<br>Sábado: 9h às 14h</p>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<footer>
+  © 2026 – Dream Team - Sistema de Confeitaria Digital
+</footer>
+
+<script>
+const formulario = document.getElementById("formulario");
+const mensagem = document.getElementById("mensagem");
+
+formulario.addEventListener("submit", function(e) {
+  e.preventDefault();
+  mensagem.textContent = "Mensagem enviada com sucesso!";
+  formulario.reset();
+  
+  setTimeout(() => {
+    mensagem.textContent = "";
+  }, 3000);
+});
+</script>
+
+</body>
+</html>
